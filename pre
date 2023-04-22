@@ -1,0 +1,107 @@
+    
+
+#include <iostream>
+#define SIZE 5
+
+using namespace std;
+
+class Queue {
+public:
+    int qfront, qrear , arr[SIZE] , count , maxSize;
+    
+    
+    Queue() {
+        
+        qfront = -1;
+        qrear = -1;
+        count = 0;
+        maxSize = SIZE;
+        
+    }
+    
+    bool isEmpty() {
+        if(qfront == -1 && qrear == -1) return true;
+        return false;
+    }
+    
+    void enQueue(int newVal) {
+        
+        if(qrear == SIZE - 1) cout << "Queue if FULL" << endl;
+        else {
+            
+            if(qfront == -1) {
+                qfront = 0;
+            }
+            
+            qrear++;
+            arr[qrear] = newVal;
+                
+        }
+        
+        ++count;
+        
+    }
+    
+    void deQueue() {
+        
+        if(isEmpty()) cout << "Queue is EMPTY" << endl;
+        else {
+            
+            if(qfront == qrear) {
+                qfront = -1;
+                qrear = -1;
+            }else ++qfront;
+            
+        }
+        
+    }
+    
+    void showFront() {
+        
+        if(isEmpty()) cout << "Queue is EMPTY" << endl;
+        else cout << "Front Element is " << arr[qfront] << endl;
+        
+    }
+    
+    void displayQueue() {
+        
+        if(isEmpty()) cout << "Queue is EMPTY" << endl;
+        else {
+            cout << "Elements from Queue is : ";
+            for(int i = qfront; i <= qrear; ++i) cout << arr[i] << " ";
+            
+        }
+        
+        cout << endl;
+        
+    }
+    
+    bool isFull() {
+        return maxSize == count;
+    }
+    
+    void back() {
+        cout << "The last element is " <<  arr[qrear] << endl;
+    }
+    
+};
+
+
+
+int main() {
+    
+    Queue q;
+    
+    q.isEmpty();
+    
+    for(int i = 1; i <= 3; ++i) q.enQueue(i);
+    
+    
+    q.showFront();
+    q.displayQueue();
+    q.back();
+    q.isFull();
+    q.isEmpty();
+    
+    return 0;
+}
